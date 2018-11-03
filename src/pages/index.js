@@ -4,7 +4,8 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import Image from '../components/image'
 
-
+var minusPoints = [];
+var plusPoints = [];
 var images = [{
     "id" : "1", 
     "name"   : "child",
@@ -88,7 +89,7 @@ var images = [{
 {
     "id" : "17", 
     "name"   : "grass",
-    "link" : "https://images.pexels.com/photos/60006/spring-tree-flowers-meadow-60006.jpeg?cs=srgb&dl=nature-flowers-sun-60006.jpg&fm=jpg"
+    "link" : "https://images.pexels.com/photos/60006/spring-tree-flowers-meadow-60006.jpeg?cs=srgb&dl=nature-flowers-sun-60006.jpg"
 },
 {
     "id" : "18", 
@@ -103,8 +104,8 @@ var images = [{
 {
     "id" : "20", 
     "name"   : "desert",
-    "link" : "https://defenders.org/sites/default/files/styles/homepage-feature-2015/public/mojave-desert_mendenhall-glacier_jason-mohap.png?itok=cP31y3Rn"
-}];;
+    "link" : "https://defenders.org/sites/default/files/styles/homepage-feature-2015/public/mojave-desert_mendenhall-glacier_jason-mohap.png"
+}];
 
 
 
@@ -115,7 +116,7 @@ function callLoop() {
 
     var obj = images[i]; /*get the link from obj*/
     callApi(obj.link);/*call Api with the new link*/
-
+    toggleButtons(false);/*enable buttons for click*/
     i++; /*increment counter*/
     if( i < howManyTimes ){
         setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
@@ -131,21 +132,44 @@ function showBtns(){
 }
 
 function checkCateg(cetegorySelected){
-    var vehicles=["vehicle", "car"];
-    var animals=["animal"];
-    var nature=["nature"];
-    var toys=["child","toy"];
+    var vehicles=["car", "bus", "truck"];
+    var animals=["animal", "cat", "cute", "merino", "wildlife", "mammal"];
+    var nature=["panoramic", "grass", "snow", "sunset", "desert"];
+    var toys=["child","toy","teddy"];
 
     var apirsp = document.getElementById('response_val').innerHTML;
     cetegorySelected = eval(cetegorySelected)
 
     if(cetegorySelected.indexOf(apirsp) == -1){
         alert("Wrong");
+        minusPoints.push(1);
     }else{
         alert("True");
+        plusPoints.push(1) ;
     }
+
+    toggleButtons(true);/*disable buttons for click*/
+    updateScore(minusPoints, plusPoints);/*update the score*/
 }
 
+function toggleButtons(option){
+    document.getElementById("cat1button").disabled = option;
+    document.getElementById("cat2button").disabled = option; 
+    document.getElementById("cat3button").disabled = option; 
+    document.getElementById("cat4button").disabled = option; 
+}
+
+
+function updateScore(minusPoints, plusPoints){
+    var minus = minusPoints.reduce((a, b) => a + b, 0);
+    var plus = plusPoints.reduce((a, b) => a + b, 0);
+
+    var totalResponses = parseFloat(minus)+parseFloat(plus);
+    var totalScore = totalResponses - parseFloat(minus);
+
+    var score = document.getElementById('score');
+    score.innerHTML = "Correct/Total: "+totalScore+"/"+totalResponses;
+}
 
 
 /*get response from api*/
@@ -162,8 +186,8 @@ function callApi(link){
             var concepts = response['outputs'][0]['data']['concepts']; /*return api response based on a link*/
             var div = document.getElementById('response'); /*where to put the response*/
             div.innerHTML += concepts[0]['name']+" - "+link+"<br/>"; /*the response and the link used*/
-            var div = document.getElementById('response_val');
-            div.innerHTML = concepts[0]['name'];
+            var div2 = document.getElementById('response_val');
+            div2.innerHTML = concepts[0]['name'];
             var img = document.getElementById('currentIMG');
             img.src = link;
             showBtns();
@@ -171,35 +195,33 @@ function callApi(link){
 }
 
 
-
-
-
-
-
 const IndexPage = () => (
   <Layout>
     <h1>Hi people</h1> 
     <p>Welcome to your new Gatsby application. Press start to begin :)</p>
+    <div id="score"></div>
 
     <button id="startbutton" onClick={callLoop}>Start</button>
 
     <div id="appcontent"  style={{display: 'none'}}>
-        <div>This is the item</div>
-        <div><img id="currentIMG" src="" width="250" /></div>
+        <div style={{width: '48%', float: 'left'}}>
+            <div>This is the item</div>
+            <div><img id="currentIMG" src="" width="250" /></div>
 
-        <button id="cat1button" onClick={() => checkCateg("animals")}>Animals</button>
-        <button id="cat2button" onClick={() => checkCateg("nature")}>Nature</button>
-        <button id="cat3button" onClick={() => checkCateg("vehicles")}>Vehicles</button>
-        <button id="cat4button" onClick={() => checkCateg("toys")}>Toys</button>
-
-        <pre id="response"></pre>
+            <button id="cat1button" onClick={() => checkCateg("animals")}>Animals</button>
+            <button id="cat2button" onClick={() => checkCateg("nature")}>Nature</button>
+            <button id="cat3button" onClick={() => checkCateg("vehicles")}>Vehicles</button>
+            <button id="cat4button" onClick={() => checkCateg("toys")}>Toys</button>
+        </div>
+        <div style={{width: '48%', float: 'right'}}>
+            <pre id="response"></pre>
+        </div>
     </div>
     
 
     <div id="response_val" style={{visibility: 'hidden'}}></div>
 
   </Layout>
-
 )
 
 

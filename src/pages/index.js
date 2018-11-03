@@ -22,7 +22,6 @@ var images = [{
 var i = 0;
 var howManyTimes = images.length;
 function callLoop() {
-    showBtns();
 
     var obj = images[i]; /*get the link from obj*/
     callApi(obj.link);/*call Api with the new link*/
@@ -37,35 +36,27 @@ function showBtns(){
     var startbtn = document.getElementById("startbutton");
     startbtn.style.display = "none";/*hide start button*/
 
-    var cat1btn = document.getElementById("cat1button");
-    cat1btn.style.display = "block";/*show cat1 button*/
-    var cat2btn = document.getElementById("cat2button");
-    cat2btn.style.display = "block";/*show cat2 button*/
-    var cat3btn = document.getElementById("cat3button");
-    cat3btn.style.display = "block";/*show cat3 button*/
-    var cat4btn = document.getElementById("cat4button");
-    cat4btn.style.display = "block";/*show cat4 button*/
+    var appcont = document.getElementById("appcontent");
+    appcont.style.display = "block";/*show app content*/
 }
 
 function checkCateg(cetegorySelected){
     var vehicles=["vehicle", "car"];
     var animals=["animal"];
     var nature=["nature"];
-    var toys=["toy", "child"];
-
-    console.log(cetegorySelected);
-    console.log(apirsp);
-    console.log(cetegorySelected.indexOf(apirsp));
+    var toys=["child","toy"];
 
     var apirsp = document.getElementById('response_val').innerHTML;
+    cetegorySelected = eval(cetegorySelected)
 
-    if(cetegorySelected.indexOf(apirsp) > 0){
-        alert("True");
-    }else{
+    if(cetegorySelected.indexOf(apirsp) == -1){
         alert("Wrong");
+    }else{
+        alert("True");
     }
-
 }
+
+
 
 /*get response from api*/
 function callApi(link){
@@ -85,6 +76,7 @@ function callApi(link){
             div.innerHTML = concepts[0]['name'];
             var img = document.getElementById('currentIMG');
             img.src = link;
+            showBtns();
         })
 }
 
@@ -96,24 +88,26 @@ function callApi(link){
 
 const IndexPage = () => (
   <Layout>
-    <h1>Hi people</h1>
+    <h1>Hi people</h1> 
     <p>Welcome to your new Gatsby application. Press start to begin :)</p>
-
-    <div>This is the item</div>
-    <img id="currentIMG" src="" width="250" />
 
     <button id="startbutton" onClick={callLoop}>Start</button>
 
-    <button id="cat1button" style={{display: 'none'}} onClick={() => checkCateg("animals")}>Animals</button>
-    <button id="cat2button" style={{display: 'none'}} onClick={() => checkCateg("nature")}>Nature</button>
-    <button id="cat3button" style={{display: 'none'}} onClick={() => checkCateg("vehicles")}>Vehicles</button>
-    <button id="cat4button" style={{display: 'none'}} onClick={() => checkCateg("toys")}>Toys</button>
+    <div id="appcontent"  style={{display: 'none'}}>
+        <div>This is the item</div>
+        <div><img id="currentIMG" src="" width="250" /></div>
 
+        <button id="cat1button" onClick={() => checkCateg("animals")}>Animals</button>
+        <button id="cat2button" onClick={() => checkCateg("nature")}>Nature</button>
+        <button id="cat3button" onClick={() => checkCateg("vehicles")}>Vehicles</button>
+        <button id="cat4button" onClick={() => checkCateg("toys")}>Toys</button>
 
-    <pre id="response"></pre>
-    <div id="response_val"></div>
-    <Link to="/page-2/">Go to page 2</Link>
+        <pre id="response"></pre>
+    </div>
     
+
+    <div id="response_val" style={{visibility: 'hidden'}}></div>
+
   </Layout>
 
 )

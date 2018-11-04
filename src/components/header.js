@@ -26,11 +26,8 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-        <Link className="btn btn-primary" to={"/list-urls"}>List of URLs</Link>
+        <Link to={"/list-urls"}>Admin</Link>
         &nbsp;&nbsp;&nbsp;
-        <a className="btn btn-primary" href="/add-url-photo"> Add an URL</a>
-        &nbsp;&nbsp;&nbsp;
-        <a className="btn btn-primary" href="/"> Go back</a>
     </div>
   </div>
 )

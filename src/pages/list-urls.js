@@ -39,7 +39,7 @@ function getUrlList() {
                 urls += '<tr>' +
                     '       <td>'+e['id']+'</td>' +
                     '       <td>'+e['photo_url']+'</td>' +
-                    '       <td><button  class="delete-url"  data-id="'+e['id']+'">delete</button></td>' +
+                    '       <td><button  class="delete-url btn btn-danger"  data-id="'+e['id']+'">delete</button></td>' +
                     '</tr>'
             });
 
@@ -124,13 +124,17 @@ const IndexPage = () => (
     <Layout>
         <h1>Lista urluri</h1>
         <p>Welcome to your new Gatsby application. Press start to begin 1:)</p>
+        <button id="list-urls" onClick={getUrlList} className={'btn btn-info'}>get urls</button>
 
-        <button id="list-urls" onClick={getUrlList}>urls</button>
-        <input id='url_photo_input' type="text" name='url_photo'/>
-        <button id="add-urls" onClick={addPhotoLink}>add url</button>
+        <table className="table table-striped table-dark">
+            <thead className="thead-dark">
+                <tr>
+                    <th colSpan={2}>
+                        <input id='url_photo_input' type="text" name='url_photo' className={'form-control'} />
+                    </th>
+                    <th><button id="add-urls" onClick={addPhotoLink} className={'btn btn-info'}>add url</button></th>
 
-        <table >
-            <thead>
+                </tr>
                 <tr>
                     <th>id</th>
                     <th>url</th>

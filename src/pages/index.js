@@ -126,7 +126,6 @@ function callLoop() {
     }
 
     callApi(obj.link);/*call Api with the new link*/
-    /*enable buttons for click*/
     i++; /*increment counter*/
     if( i < howManyTimes ){
         setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
@@ -151,10 +150,10 @@ function checkCateg(cetegorySelected){
     cetegorySelected = eval(cetegorySelected);
 
     if(cetegorySelected.indexOf(apirsp) == -1){
-        // alert("Wrong");
+        // console.log("Wrong");
         minusPoints.push(1);
     }else{
-        // alert("True");
+        // console.log("True");
         plusPoints.push(1) ;
     }
 
@@ -187,7 +186,8 @@ function callApi(link){
         .then(response => {
             var concepts = response['outputs'][0]['data']['concepts']; /*return api response based on a link*/
             var div = document.getElementById('response'); /*where to put the response*/
-            div.innerHTML += concepts[0]['name']+" - "+link+"<br/>"; /*the response and the link used*/
+            // console.log(concepts[0]['name']);
+            div.innerHTML += link+"<br/>"; /*the response and the link used*/
             var div2 = document.getElementById('response_val');
             div2.innerHTML = concepts[0]['name'];
             var img = document.getElementById('currentIMG');

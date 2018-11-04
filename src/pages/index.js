@@ -118,10 +118,15 @@ var images = [{
 var i = 0;
 var howManyTimes = images.length;
 function callLoop() {
-
     var obj = images[i]; /*get the link from obj*/
+
+    if(i !== 0){
+        document.getElementById("addIMG").remove();
+        document.getElementById("content-default").innerHTML = '<div>Please put this item in a category:</div><div id="addIMG"><img id="currentIMG" src="" width="250" /></div>';
+    }
+
     callApi(obj.link);/*call Api with the new link*/
-    toggleButtons(false);/*enable buttons for click*/
+    /*enable buttons for click*/
     i++; /*increment counter*/
     if( i < howManyTimes ){
         setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
@@ -143,25 +148,17 @@ function checkCateg(cetegorySelected){
     var toys=["child","toy","teddy"];
 
     var apirsp = document.getElementById('response_val').innerHTML;
-    cetegorySelected = eval(cetegorySelected)
+    cetegorySelected = eval(cetegorySelected);
 
     if(cetegorySelected.indexOf(apirsp) == -1){
-        alert("Wrong");
+        // alert("Wrong");
         minusPoints.push(1);
     }else{
-        alert("True");
+        // alert("True");
         plusPoints.push(1) ;
     }
 
-    toggleButtons(true);/*disable buttons for click*/
     updateScore(minusPoints, plusPoints);/*update the score*/
-}
-
-function toggleButtons(option){
-    document.getElementById("cat1button").disabled = option;
-    document.getElementById("cat2button").disabled = option;
-    document.getElementById("cat3button").disabled = option;
-    document.getElementById("cat4button").disabled = option;
 }
 
 
@@ -215,97 +212,65 @@ function getUrlList() {
             });
 
             console.log(photosUrlsRandom)
-
         });
 }
 
 
 export default class IndexPage extends React.Component {
     componentDidMount() {
-        // var container = ReactDOM.findDOMNode(this);
         var drag = document.getElementsByClassName('drag-wrapper')[0];
         var dragc1 = document.getElementsByClassName('drag-wrapper')[1];
         var dragc2 = document.getElementsByClassName('drag-wrapper')[2];
         var dragc3 = document.getElementsByClassName('drag-wrapper')[3];
         var dragc4 = document.getElementsByClassName('drag-wrapper')[4];
-        // console.log(document.getElementsByClassName('container'));
-        dragula([drag, dragc1,dragc2,dragc3,dragc4]);
+        dragula([drag, dragc1,dragc2,dragc3,dragc4])
+            .on('drop', function(el, target, source, sibling) {
+            checkCateg(target.id);
+        });
     }
     render(){
         return (
-              <Layout>
+            <Layout>
                 <h1>Hi people</h1>
                 <p>Welcome to your new Gatsby application. Press start to begin :)</p>
-                <div className='container'>
-                    <div className='drag-wrapper'>
-                        <div className='btn btn-warning'>Swap me around</div>
-                        <div className='btn btn-warning'>Swap me around1</div>
-                        <div className='btn btn-warning'>Swap me around2</div>
-                        <div className='btn btn-warning'>Swap me around3</div>
-                        <div className='btn btn-warning'>Swap me around4</div>
-                        <div className='btn btn-warning'>Swap me around5</div>
-                        <div className='btn btn-warning'>Swap me around6</div>
-                        <div className='btn btn-warning'>Swap me around7</div>
-                        <div className='btn btn-warning'>Swap me around8</div>
-                        <div className='btn btn-warning'>Swap me around9</div>
-                    </div>
-                </div>
-            <div className='container'>
-                <div className="row">
-                    <div className="col-3">
-                        <h3>Categorie 1</h3>
-                        <div className='drag-wrapper'>
-                            {/*<div className='btn btn-warning'>Swap me around</div>*/}
-                        </div>
-                    </div>
-                    <div className="col-3">
-                        <h3>Categorie 2</h3>
-                        <div className='drag-wrapper'>
-                            <div className='btn btn-warning'>Swap me around</div>
-                        </div>
-                    </div>
-                    <div className="col-3">
-                        <h3>Categorie 3</h3>
-                        <div className='drag-wrapper'>
-                            <div className='btn btn-warning'>Swap me around</div>
-                        </div>
-                    </div>
-                    <div className="col-3">
-                        <h3>Categorie 4</h3>
-                        <div className='drag-wrapper'>
-                            <div className='btn btn-warning'>Swap me around</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-                <div id="score"></div>
 
                 <button id="startbutton" onClick={callLoop}>Start</button>
 
                 <div id="appcontent"  style={{display: 'none'}}>
-                    <div style={{width: '48%', float: 'left'}}>
-                        <div>This is the item</div>
-                        <div><img id="currentIMG" src="" width="250" /></div>
 
-                        <button id="cat1button" onClick={() => checkCateg("animals")}>Animals</button>
-                        <button id="cat2button" onClick={() => checkCateg("nature")}>Nature</button>
-                        <button id="cat3button" onClick={() => checkCateg("vehicles")}>Vehicles</button>
-                        <button id="cat4button" onClick={() => checkCateg("toys")}>Toys</button>
+                    <div className='container'>
+                        <div className='drag-wrapper' id="content-default" style={{minHeight: '260px'}}>
+                            <div>Please put this item in a category:</div>
+                            <div id="addIMG"><img id="currentIMG" src="" width="250" /></div>
+                        </div>
                     </div>
-                    <div style={{width: '48%', float: 'right'}}>
-                        <pre id="response"></pre>
+                    <div id="score"></div>
+                    <div className='container'>
+                        <div className="row">
+                            <div className="col-3">
+                                <h3>animals</h3>
+                                <div id="animals" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                            </div>
+                            <div className="col-3">
+                                <h3>nature</h3>
+                                <div id="nature" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                            </div>
+                            <div className="col-3">
+                                <h3>vehicles</h3>
+                                <div id="vehicles" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                            </div>
+                            <div className="col-3">
+                                <h3>toys</h3>
+                                <div id="toys" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <pre id="response"></pre>
+                    <div id="response_val" style={{visibility: 'hidden'}}></div>
                 </div>
-
-
-                <div id="response_val" style={{visibility: 'hidden'}}></div>
-
               </Layout>
         )
     }
 }
-
-
-// export default IndexPage

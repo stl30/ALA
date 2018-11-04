@@ -26,5 +26,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+      new webpack.DefinePlugin({ "global.GENTLY": false })
+
   ],
 }

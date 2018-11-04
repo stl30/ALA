@@ -17,20 +17,33 @@ var images = [];
 // images=getUrlList()
 
 /*on start press will follow the next lines to load*/
-var i = 0;
+var q = 0;
 function callLoop() {
-    var obj = images[i]; /*get the link from obj*/
+    var obj = images[q]; /*get the link from obj*/
 
-    if(i !== 0){
+    if(q !== 0){
         document.getElementById("addIMG").remove();
         document.getElementById("content-default").innerHTML = '<div>Please put this item in a category:</div><div id="addIMG"><img id="currentIMG" src="" width="250" /></div>';
     }
 
-    callApi(obj.photo_url);/*call Api with the new link*/
-    i++; /*increment counter*/
-    if( i < images.length ){
-        setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
+    callApi(obj.photo_url, q);/*call Api with the new link*/
+    q++; /*increment counter*/
+    if( q < images.length ){
+            setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
+    }else{
+        if( q === images.length){
+            console.log("images.length "+images.length);
+            console.log("q "+q);
+
+            setTimeout( addScore(getCookie('username'), getCookie("score")), 10000 );
+        }
     }
+}
+
+function addScore(name, score){
+
+    console.log(name);
+    console.log(score);
 }
 
 function showBtns(){
@@ -49,6 +62,22 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 function checkCateg(cetegorySelected){
@@ -80,7 +109,9 @@ function updateScore(minusPoints, plusPoints){
     var totalScore = totalResponses - parseFloat(minus);
 
     var score = document.getElementById('score');
-    score.innerHTML = "Number of correct answers "+totalResponses+" from a total of "+totalScore;
+    score.innerHTML = "Number of correct answers "+totalScore+" from a total of "+totalResponses;
+
+    setCookie("score", totalScore, 1);
 }
 
 

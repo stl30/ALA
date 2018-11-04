@@ -133,11 +133,21 @@ function callLoop() {
 }
 
 function showBtns(){
-    var startbtn = document.getElementById("startbutton");
+    var startbtn = document.getElementById("startinterface");
     startbtn.style.display = "none";/*hide start button*/
+
+    var nameval = document.getElementById("username").value;
+    setCookie("username", nameval, 1);
 
     var appcont = document.getElementById("appcontent");
     appcont.style.display = "block";/*show app content*/
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function checkCateg(cetegorySelected){
@@ -169,7 +179,7 @@ function updateScore(minusPoints, plusPoints){
     var totalScore = totalResponses - parseFloat(minus);
 
     var score = document.getElementById('score');
-    score.innerHTML = "Correct/Total: "+totalScore+"/"+totalResponses;
+    score.innerHTML = "Number of correct answers "+totalResponses+" from a total of "+totalScore;
 }
 
 
@@ -186,7 +196,7 @@ function callApi(link){
         .then(response => {
             var concepts = response['outputs'][0]['data']['concepts']; /*return api response based on a link*/
             var div = document.getElementById('response'); /*where to put the response*/
-            // console.log(concepts[0]['name']);
+            console.log(concepts[0]['name']);
             div.innerHTML += link+"<br/>"; /*the response and the link used*/
             var div2 = document.getElementById('response_val');
             div2.innerHTML = concepts[0]['name'];
@@ -231,43 +241,46 @@ export default class IndexPage extends React.Component {
     render(){
         return (
             <Layout>
-                <h1>Hi people</h1>
-                <p>Welcome to your new Gatsby application. Press start to begin :)</p>
+                <div id="startinterface" style={{textAlign:"center"}}>
+                    <h1>Hi people</h1>
+                    <p>Welcome to your new Gatsby application. Press start to begin :)</p>
 
-                <button id="startbutton" onClick={callLoop}>Start</button>
+                    <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{maxWidth: "300px", margin: "10px auto", display: "block"}}></input>
+                    <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Start</button>
+                </div>
 
                 <div id="appcontent"  style={{display: 'none'}}>
 
-                    <div className='container'>
+                    <div className='container' style={{textAlign:"center"}}>
                         <div className='drag-wrapper' id="content-default" style={{minHeight: '260px'}}>
-                            <div>Please put this item in a category:</div>
-                            <div id="addIMG"><img id="currentIMG" src="" width="250" /></div>
+                            <div style={{marginBottom:"20px"}}>Please put this item in a category:</div>
+                            <div id="addIMG" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                                <img style={{maxHeight: "245px", maxWidth: "245px"}} id="currentIMG" src="" /></div>
                         </div>
                     </div>
-                    <div id="score"></div>
                     <div className='container'>
                         <div className="row">
                             <div className="col-3">
-                                <h3>animals</h3>
-                                <div id="animals" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                                <h3 className="text-center">animals</h3>
+                                <div id="animals" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
                             </div>
                             <div className="col-3">
-                                <h3>nature</h3>
-                                <div id="nature" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                                <h3 className="text-center">nature</h3>
+                                <div id="nature" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
                             </div>
                             <div className="col-3">
-                                <h3>vehicles</h3>
-                                <div id="vehicles" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                                <h3 className="text-center">vehicles</h3>
+                                <div id="vehicles" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
                             </div>
                             <div className="col-3">
-                                <h3>toys</h3>
-                                <div id="toys" className='drag-wrapper' style={{minHeight: '260px', border: '1px solid black'}}></div>
+                                <h3 className="text-center">toys</h3>
+                                <div id="toys" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
                             </div>
                         </div>
 
                     </div>
-
-                    <pre id="response"></pre>
+                    <div id="score" style={{marginTop: '20px', textAlign: 'center'}}></div>
+                    <pre id="response"  style={{visibility: 'hidden'}}></pre>
                     <div id="response_val" style={{visibility: 'hidden'}}></div>
                 </div>
               </Layout>

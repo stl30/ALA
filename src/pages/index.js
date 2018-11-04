@@ -11,125 +11,43 @@ import Layout from '../components/layout'
 
 var minusPoints = [];
 var plusPoints = [];
-var images = [{
-  "id": "1",
-  "name": "child",
-  "link": "https://ae01.alicdn.com/kf/HTB1XGhfNXXXXXXDXFXXq6xXFXXX7/Kids-Puzzle-Educational-Toys-Disassembly-Assembly-Classic-Car-Model-Building-Toy-Children-best-gifts.jpg_640x640.jpg"
-},
-{
-  "id": "2",
-  "name": "toy",
-  "link": "https://images-na.ssl-images-amazon.com/images/I/61JI4lEfY-L._SX355_.jpg"
-},
-{
-  "id": "3",
-  "name": "child",
-  "link": "https://www.mouthsofmums.com.au/wp-content/uploads/2016/05/05/xtoys-shutterstock_321375317-mf.jpg.pagespeed.ic.wyiSRKl2DA.jpg"
-},
-{
-  "id": "4",
-  "name": "teddy",
-  "link": "https://images-na.ssl-images-amazon.com/images/I/81QpshLNqeL._SL1500_.jpg"
-},
-{
-  "id": "5",
-  "name": "child",
-  "link": "https://target.scene7.com/is/image/Target/GUEST_2ddd3f39-b150-4a2c-b7f8-7cc1b90c56e5?wid=488&hei=488&fmt=pjpeg"
-},
-{
-  "id": "6",
-  "name": "car",
-  "link": "https://www.jeep-india.com/content/dam/cross-regional/apac/jeep/en_in/vehicle-lineup/jeep-Vehicle-Lineup-Compass.png"
-},
-{
-  "id": "7",
-  "name": "bus",
-  "link": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Transperth_Volgren_Optimus_bodied_Volvo_B8RLEA.jpg"
-},
-{
-  "id": "8",
-  "name": "car",
-  "link": "https://www.sixt.com/fileadmin/files/global/user_upload/fleet/png/350x200/vw-beetle-2d-cabrio-rot-offen-2015.png"
-},
-{
-  "id": "9",
-  "name": "truck",
-  "link": "https://img.grouponcdn.com/deal/cbt6NeGzUfzp5AZ6nNpUgVRGeHD/cb-2048x1229/v1/c700x420.jpg"
-},
-{
-  "id": "10",
-  "name": "car",
-  "link": "https://www.nationwidevehiclecontracts.co.uk/m/1/dacia-logan-access.jpg"
-},
-{
-  "id": "11",
-  "name": "cat",
-  "link": "https://www.bluecross.org.uk/sites/default/files/assets/images/124044lpr.jpg"
-},
-{
-  "id": "12",
-  "name": "cute",
-  "link": "https://cdn.newsapi.com.au/image/v1/67a523605bca40778c6faaad93883a3b"
-},
-{
-  "id": "13",
-  "name": "merino",
-  "link": "http://beaconalpacas.co.uk/wp-content/uploads/2016/11/Fabio.jpg"
-},
-{
-  "id": "14",
-  "name": "wildlife",
-  "link": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJDLRm.3o2Iw/v0/800x-1.jpg"
-},
-{
-  "id": "15",
-  "name": "mammal",
-  "link": "https://cdn.securesyte.com/qg5Pk2drzv-991/images/blog/raccoon-in-missouri.png"
-},
-{
-  "id": "16",
-  "name": "panoramic",
-  "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-Nd73d_Ii8JMWSufxAynVjyTKWLfCBTWf2DsBGQVCq3o8tN2"
-},
-{
-  "id": "17",
-  "name": "grass",
-  "link": "https://images.pexels.com/photos/60006/spring-tree-flowers-meadow-60006.jpeg?cs=srgb&dl=nature-flowers-sun-60006.jpg"
-},
-{
-  "id": "18",
-  "name": "snow",
-  "link": "https://mountaincountieswater.com/wp-content/uploads/2011/04/2013-Snow-Sierras-2.jpg"
-},
-{
-  "id": "19",
-  "name": "sunset",
-  "link": "http://wall2born.com/data/out/345/image-44351151-wallpapers-view-nature-hd.jpg"
-},
-{
-  "id": "20",
-  "name": "desert",
-  "link": "https://defenders.org/sites/default/files/styles/homepage-feature-2015/public/mojave-desert_mendenhall-glacier_jason-mohap.png"
-}];
 
 
+var images = [];
+
+// images=getUrlList()
 
 /*on start press will follow the next lines to load*/
-var i = 0;
-var howManyTimes = images.length;
+var q = 0;
 function callLoop() {
-  var obj = images[i]; /*get the link from obj*/
+  console.log(images.length)
+  var obj = images[q]; /*get the link from obj*/
 
-  if (i !== 0) {
+  if (q !== 0) {
     document.getElementById("addIMG").remove();
     document.getElementById("content-default").innerHTML = '<div>Please put this item in a category:</div><div id="addIMG"><img id="currentIMG" src="" width="250" /></div>';
   }
 
-  callApi(obj.link);/*call Api with the new link*/
-  i++; /*increment counter*/
-  if (i < howManyTimes) {
-    setTimeout(callLoop, 10000);/*call function again after 10 sec*/
+
+  if (q < images.length) {
+    callApi(obj.photo_url, q);/*call Api with the new link*/
+    setTimeout(callLoop, 5000);/*call function again after 10 sec*/
+  } else {
+    if (q === images.length) {
+      console.log('add_score')
+      addScore(getCookie('username'), getCookie("score"));
+      q = 0;
+      minusPoints = [];
+      plusPoints = [];
+
+      var corrimg = document.getElementById('content-default');
+      corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://techflourish.com/images/cross-the-finish-line-clipart-6.png" /><div>Your final score is: ' + getCookie("score") + '</div>';
+
+    }
   }
+  // console.log("images.length "+images.length);
+  // console.log("q "+q);
+  q++; /*increment counter*/
 }
 
 function showBtns() {
@@ -150,22 +68,45 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 function checkCateg(cetegorySelected) {
   var vehicles = ["car", "bus", "truck"];
   var animals = ["animal", "cat", "cute", "merino", "wildlife", "mammal"];
   var nature = ["panoramic", "grass", "snow", "sunset", "desert"];
   var toys = ["child", "toy", "teddy"];
 
+
   var apirsp = document.getElementById('response_val').innerHTML;
   cetegorySelected = eval(cetegorySelected);
 
+
   if (cetegorySelected.indexOf(apirsp) == -1) {
+    var corrimg = document.getElementById('content-default');
+    corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://img.clipartxtras.com/00102a250a131b15f45274fff0956aba_crying-smiley-face-clip-art-sad-face-with-tears-clipart-crying-clipart-sad-face-crying_768-768.png" /><div>The answer is not correct!</div>';
     // console.log("Wrong");
     minusPoints.push(1);
   } else {
+    var corrimg = document.getElementById('content-default');
+    corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://www.freeiconspng.com/uploads/yellow-star-png-image--yellow-star-png-image-2.png" /><div>The answer is correct!!!</div>';
     // console.log("True");
     plusPoints.push(1);
   }
+
 
   updateScore(minusPoints, plusPoints);/*update the score*/
 }
@@ -179,11 +120,14 @@ function updateScore(minusPoints, plusPoints) {
   var totalScore = totalResponses - parseFloat(minus);
 
   var score = document.getElementById('score');
-  score.innerHTML = "Number of correct answers " + totalScore  + " from a total of " + totalResponses;
+  score.innerHTML = "Number of correct answers " + totalScore + " from a total of " + totalResponses;
+
+  setCookie("score", totalScore, 1);
 }
 
 
 /*get response from api*/
+
 function callApi(link) {
   const Clarifai = require('clarifai');
   const app = new Clarifai.App({
@@ -196,7 +140,7 @@ function callApi(link) {
     .then(response => {
       var concepts = response['outputs'][0]['data']['concepts']; /*return api response based on a link*/
       var div = document.getElementById('response'); /*where to put the response*/
-      console.log(concepts[0]['name']);
+      // console.log(concepts[0]['name']);
       div.innerHTML += link + "<br/>"; /*the response and the link used*/
       var div2 = document.getElementById('response_val');
       div2.innerHTML = concepts[0]['name'];
@@ -206,10 +150,12 @@ function callApi(link) {
     })
 }
 
-function getUrlList() {
+
+function getUrlList(getNumberOfPictures) {
+
   request
     .post('https://fcc--alae.herokuapp.com/v1alpha1/graphql')
-    .send({ "query": "query{photos_urls {id photo_url}}", "variables": null }) // sends a JSON post body
+    .send({ "query": "query{ photos_urls(limit: " + getNumberOfPictures + ") {id photo_url}}", "variables": null }) // sends a JSON post body
     .set('X-API-Key', 'foobar')
     .set('accept', 'json')
     .end((err, res) => {
@@ -221,8 +167,32 @@ function getUrlList() {
         return -1;
       });
 
-      console.log(photosUrlsRandom)
+      // console.log(photosUrlsRandom)
+      images = photosUrlsRandom;
     });
+
+}
+
+function addScore(name, score) {
+
+  request
+    .post('https://fcc--alae.herokuapp.com/v1alpha1/graphql')
+    .send({ "query": "mutation insert_player {\n  insert_players(\n    objects: [\n      {\n        \n        name: \"" + name + "\",\n        score: \"" + score + "\"\n      }\n    ]\n  ) {\n    returning {\n      id\n      name\n    }\n  }\n}", "variables": null, "operationName": "insert_player" }) // sends a JSON post body
+    .set('X-API-Key', 'foobar')
+    .set('accept', 'json')
+    .end((err, res) => {
+
+      console.log(res)
+
+
+    });
+}
+
+getUrlList(5)
+
+function onChange(event) {
+  // this.setState({typed: event.target.value});
+  console.log(event);
 }
 
 
@@ -245,51 +215,88 @@ export default class IndexPage extends React.Component {
         <div id="startinterface" style={{ textAlign: "center" }}>
 
           {/* <p>Welcome to your new Gatsby application.<br></br> Press start to begin :)</p> */}
+
           <input className="form-control" type="text" name="name" id="username" placeholder="Your nickname?" style={{ height: "50px", maxWidth: "240px", margin: "10px auto", display: "block" }}></input>
+
           <div className="back">
             <div className="button_base b05_3d_roll">
-            <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Let's drop it!</button>
+              <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Let's drop it!</button>
 
             </div>
 
           </div>
-          </div>
-          <div id="appcontent" style={{ display: 'none' }}>
 
-            <div className='container' style={{ textAlign: "center" }}>
-              <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px', color: "#233489" }}>
-                <div style={{ marginBottom: "20px" }}>Please put this item in a category:</div>
-                <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
-              </div>
-            </div>
-            <div className='container' style={{ padding: "0" }}>
-              <div className="row">
-                <div className="col-3">
-                  <h3 className="text-center"  style={{ color: "#233489" }}>Animals</h3>
-                  <div id="animals" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
-                </div>
-                <div className="col-3">
-                  <h3 className="text-center" style={{ color: "#233489" }}>Nature</h3>
-                  <div id="nature" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
-                </div>
-                <div className="col-3">
-                  <h3 className="text-center" style={{ color: "#233489" }}>Vehicles</h3>
-                  <div id="vehicles" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
-                </div>
-                <div className="col-3">
-                  <h3 className="text-center" style={{ color: "#233489" }}>Toys</h3>
-                  <div id="toys" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
-                </div>
+          <div className="container-fluid" style={{ marginTop: '120px' }}>
+            <div className="row">
+              <div className="col-md-2">
+                <div className="dot" style={{ margin: '35px auto', width: '100px' }}></div>
+                <div className="shadow" style={{ margin: '35px auto', width: '120px' }}></div>
               </div>
 
+              <div className="col-md-2">
+                <div className="dot" style={{ margin: '35px auto', width: '100px' }}></div>
+                <div className="shadow" style={{ margin: '35px auto', width: '120px' }}></div>
+              </div>
+
+              <div className="col-md-2">
+                <div className="dot" style={{ margin: '35px auto', width: '100px' }}></div>
+                <div className="shadow" style={{ margin: '35px auto', width: '120px' }}></div>
+              </div>
+
+              <div className="col-md-2">
+                <div className="dot" style={{ margin: '35px auto', width: '100px' }}></div>
+                <div className="shadow" style={{ margin: '35px auto', width: '120px' }}></div>
+              </div>
+
+              <div className="col-md-2">
+                <div className="dot" style={{ margin: '35px auto', width: '100px' }}></div>
+                <div className="shadow" style={{ margin: '35px auto', width: '120px' }}></div>
+              </div>
+
+              <div className="col-md-2">
+                <div className="dot" style={{ margin: '35px auto', width: '100px' }}></div>
+                <div className="shadow" style={{ margin: '35px auto', width: '120px' }}></div>
+              </div>
             </div>
-            <div id="score" style={{ marginTop: '20px', textAlign: 'center', color: "#233489"  }}></div>
-            <pre id="response" style={{ visibility: 'hidden' }}></pre>
-            <div id="response_val" style={{ visibility: 'hidden' }}></div>
+          </div>
+        </div>
+        <div id="appcontent" style={{ display: 'none' }}>
+          <div id="score" style={{ marginTop: '20px', textAlign: 'center', color: "#233489" }}></div>
+
+          <div className='container' style={{ textAlign: "center" }}>
+            <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px', color: "#233489" }}>
+              <div style={{ marginBottom: "20px" }}>Please select a category for this item</div>
+              <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
+            </div>
+          </div>
+          <div className='container' style={{ padding: "0" }}>
+            <div className="row">
+              <div className="col-3">
+                <h3 className="text-center" style={{ color: "#233489" }}>Animals</h3>
+                <div id="animals" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
+              </div>
+              <div className="col-3">
+                <h3 className="text-center" style={{ color: "#233489" }}>Nature</h3>
+                <div id="nature" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
+              </div>
+              <div className="col-3">
+                <h3 className="text-center" style={{ color: "#233489" }}>Vehicles</h3>
+                <div id="vehicles" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
+              </div>
+              <div className="col-3">
+                <h3 className="text-center" style={{ color: "#233489" }}>Toys</h3>
+                <div id="toys" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
+              </div>
+            </div>
+
           </div>
 
-      
+          <pre id="response" style={{ visibility: 'hidden' }}></pre>
+          <div id="response_val" style={{ visibility: 'hidden' }}></div>
+        </div>
+
+
       </Layout>
     )
   }

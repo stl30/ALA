@@ -9,6 +9,45 @@ const SecondPage = () => (
 
         <div className="container-fluid">
 
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="dot"></div>
+                        <div class="shadow"></div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dot"></div>
+                        <div class="shadow"></div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dot"></div>
+                        <div class="shadow"></div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dot"></div>
+                        <div class="shadow"></div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dot"></div>
+                        <div class="shadow"></div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dot"></div>
+                        <div class="shadow"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <div className="row">
                 <div className="col-md-4">
                 </div>

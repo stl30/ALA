@@ -40,25 +40,27 @@ const IndexPage = () => (
     <Layout>
         <h1 className="text-center">LEADERBOARD</h1>
 
+        <div className="container">
+            <table className="table table-striped table-dark">
+                <thead className="thead-dark">
+                <tr>
 
-        <table className="table table-striped table-dark">
-            <thead className="thead-dark">
-            <tr>
+                    <th>
+                        <button id="list-urls" onClick={getScoreList} className={'btn btn-info'} style={{display: "inline-block"}}>Get leaderboard</button>
+                    </th>
+                </tr>
+                <tr>
+                    <th>nume</th>
+                    <th>scor</th>
+                </tr>
+                </thead>
 
-                <th>
-                    <button id="list-urls" onClick={getScoreList} className={'btn btn-info'} style={{display: "inline-block"}}>Get leaderboard</button>
-                </th>
-            </tr>
-            <tr>
-                <th>nume</th>
-                <th>scor</th>
-            </tr>
-            </thead>
+                <tbody id="urls_table_body">
 
-            <tbody id="urls_table_body">
+                </tbody>
+            </table>
+        </div>
 
-            </tbody>
-        </table>
 
         <div id="list-urls">
 

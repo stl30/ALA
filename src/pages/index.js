@@ -12,6 +12,7 @@ import Layout from '../components/layout'
 var minusPoints = [];
 var plusPoints = [];
 
+
 var images = [];
 
 // images=getUrlList()
@@ -36,9 +37,11 @@ function callLoop() {
             console.log('add_score')
             addScore(getCookie('username'), getCookie("score"));
             q=0;
+            minusPoints = [];
+            plusPoints = [];
 
             var corrimg = document.getElementById('content-default');
-            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://www.freeiconspng.com/uploads/yellow-star-png-image--yellow-star-png-image-2.png" /><div>You have finished!</div>';
+            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://techflourish.com/images/cross-the-finish-line-clipart-6.png" /><div>You have finished with '+getCookie("score")+' points</div>';
 
         }
     }
@@ -47,22 +50,22 @@ function callLoop() {
     q++; /*increment counter*/
 }
 
-function showBtns(){
-    var startbtn = document.getElementById("startinterface");
-    startbtn.style.display = "none";/*hide start button*/
+function showBtns() {
+  var startbtn = document.getElementById("startinterface");
+  startbtn.style.display = "none";/*hide start button*/
 
-    var nameval = document.getElementById("username").value;
-    setCookie("username", nameval, 1);
+  var nameval = document.getElementById("username").value;
+  setCookie("username", nameval, 1);
 
-    var appcont = document.getElementById("appcontent");
-    appcont.style.display = "block";/*show app content*/
+  var appcont = document.getElementById("appcontent");
+  appcont.style.display = "block";/*show app content*/
 }
 
 function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
@@ -87,8 +90,10 @@ function checkCateg(cetegorySelected){
     var nature=["panoramic", "grass", "snow", "sunset", "desert"];
     var toys=["child","toy","teddy"];
 
-    var apirsp = document.getElementById('response_val').innerHTML;
-    cetegorySelected = eval(cetegorySelected);
+
+  var apirsp = document.getElementById('response_val').innerHTML;
+  cetegorySelected = eval(cetegorySelected);
+
 
     if(cetegorySelected.indexOf(apirsp) == -1){
         var corrimg = document.getElementById('content-default');
@@ -102,25 +107,27 @@ function checkCateg(cetegorySelected){
         plusPoints.push(1) ;
     }
 
-    updateScore(minusPoints, plusPoints);/*update the score*/
+
+  updateScore(minusPoints, plusPoints);/*update the score*/
 }
 
 
-function updateScore(minusPoints, plusPoints){
-    var minus = minusPoints.reduce((a, b) => a + b, 0);
-    var plus = plusPoints.reduce((a, b) => a + b, 0);
+function updateScore(minusPoints, plusPoints) {
+  var minus = minusPoints.reduce((a, b) => a + b, 0);
+  var plus = plusPoints.reduce((a, b) => a + b, 0);
 
-    var totalResponses = parseFloat(minus)+parseFloat(plus);
-    var totalScore = totalResponses - parseFloat(minus);
+  var totalResponses = parseFloat(minus) + parseFloat(plus);
+  var totalScore = totalResponses - parseFloat(minus);
 
     var score = document.getElementById('score');
-    score.innerHTML = "Number of correct answers "+totalScore+" from a total of "+totalResponses;
+    score.innerHTML = "Number of correct answers "+ totalScore+" from a total of "+totalResponses;
 
     setCookie("score", totalScore, 1);
 }
 
 
 /*get response from api*/
+
 function callApi(link){
     const Clarifai = require('clarifai');
     const app = new Clarifai.App({
@@ -163,6 +170,7 @@ function getUrlList(getNumberOfPictures) {
             // console.log(photosUrlsRandom)
             images=photosUrlsRandom;
         });
+
 }
 
 function addScore(name, score){
@@ -189,64 +197,71 @@ function onChange(event) {
 
 
 export default class IndexPage extends React.Component {
-    componentDidMount() {
-        var drag = document.getElementsByClassName('drag-wrapper')[0];
-        var dragc1 = document.getElementsByClassName('drag-wrapper')[1];
-        var dragc2 = document.getElementsByClassName('drag-wrapper')[2];
-        var dragc3 = document.getElementsByClassName('drag-wrapper')[3];
-        var dragc4 = document.getElementsByClassName('drag-wrapper')[4];
-        dragula([drag, dragc1,dragc2,dragc3,dragc4])
-            .on('drop', function(el, target, source, sibling) {
-            checkCateg(target.id);
-        });
-    }
-    render(){
-        return (
-            <Layout>
-                <div id="startinterface" style={{textAlign:"center"}}>
-                    <h1>Hi people</h1>
-                    <p>Welcome to "Drop it like is hot" new Gatsby application. Press Start to begin :)</p>
-                    {/*<button id="add-score" onClick={addScore} className={'btn btn-info'} style={{marginRight:"10px", display: "inline-block"}}>Add a new URL</button>*/}
+  componentDidMount() {
+    var drag = document.getElementsByClassName('drag-wrapper')[0];
+    var dragc1 = document.getElementsByClassName('drag-wrapper')[1];
+    var dragc2 = document.getElementsByClassName('drag-wrapper')[2];
+    var dragc3 = document.getElementsByClassName('drag-wrapper')[3];
+    var dragc4 = document.getElementsByClassName('drag-wrapper')[4];
+    dragula([drag, dragc1, dragc2, dragc3, dragc4])
+      .on('drop', function (el, target, source, sibling) {
+        checkCateg(target.id);
+      });
+  }
+  render() {
+    return (
+      <Layout>
 
-                    <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{maxWidth: "300px", margin: "10px auto", display: "block"}}></input>
-                    <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Start</button>
+        <div id="startinterface" style={{ textAlign: "center" }}>
+
+          {/* <p>Welcome to your new Gatsby application.<br></br> Press start to begin :)</p> */}
+          <input className="form-control" type="text" name="name" id="username" placeholder="Your nickname?" style={{ maxWidth: "240px", margin: "10px auto", display: "block" }}></input>
+          <div className="back">
+            <div className="button_base b05_3d_roll">
+            <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Let's drop it!</button>
+
+            </div>
+
+          </div>
+          </div>
+          <div id="appcontent" style={{ display: 'none' }}>
+              <div id="score" style={{ marginTop: '20px', textAlign: 'center', color: "#233489"  }}></div>
+
+            <div className='container' style={{ textAlign: "center" }}>
+              <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px', color: "#233489" }}>
+                <div style={{ marginBottom: "20px" }}>Please put this item in a category:</div>
+                <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
+              </div>
+            </div>
+            <div className='container' style={{ padding: "0" }}>
+              <div className="row">
+                <div className="col-3">
+                  <h3 className="text-center"  style={{ color: "#233489" }}>Animals</h3>
+                  <div id="animals" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
                 </div>
-
-                <div id="appcontent"  style={{display: 'none'}}>
-                    <div id="score" style={{marginTop: '20px', textAlign: 'center'}}></div>
-                    <div className='container' style={{textAlign:"center"}}>
-                        <div className='drag-wrapper' id="content-default" style={{minHeight: '260px'}}>
-                            <div style={{marginBottom:"20px"}}>Please put this item in a category:</div>
-                            <div id="addIMG" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                                <img style={{maxHeight: "245px", maxWidth: "245px"}} id="currentIMG" src="" /></div>
-                        </div>
-                    </div>
-                    <div className='container'>
-                        <div className="row">
-                            <div className="col-3">
-                                <h3 className="text-center">animals</h3>
-                                <div id="animals" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
-                            </div>
-                            <div className="col-3">
-                                <h3 className="text-center">nature</h3>
-                                <div id="nature" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
-                            </div>
-                            <div className="col-3">
-                                <h3 className="text-center">vehicles</h3>
-                                <div id="vehicles" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
-                            </div>
-                            <div className="col-3">
-                                <h3 className="text-center">toys</h3>
-                                <div id="toys" className='drag-wrapper' style={{minHeight: '245px', border: '1px solid black'}}></div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <pre id="response"  style={{visibility: 'hidden'}}></pre>
-                    <div id="response_val" style={{visibility: 'hidden'}}></div>
+                <div className="col-3">
+                  <h3 className="text-center" style={{ color: "#233489" }}>Nature</h3>
+                  <div id="nature" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
                 </div>
-              </Layout>
-        )
-    }
+                <div className="col-3">
+                  <h3 className="text-center" style={{ color: "#233489" }}>Vehicles</h3>
+                  <div id="vehicles" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
+                </div>
+                <div className="col-3">
+                  <h3 className="text-center" style={{ color: "#233489" }}>Toys</h3>
+                  <div id="toys" className='drag-wrapper circle' style={{ minHeight: '230px', border: '2px solid #319bb6' }}></div>
+                </div>
+              </div>
+
+            </div>
+
+            <pre id="response" style={{ visibility: 'hidden' }}></pre>
+            <div id="response_val" style={{ visibility: 'hidden' }}></div>
+          </div>
+
+      
+      </Layout>
+    )
+  }
 }

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Drop it like is hot',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

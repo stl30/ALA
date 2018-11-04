@@ -35,7 +35,7 @@ function getUrlList() {
 const IndexPage = () => (
     <Layout>
         <h1>Lista urluri</h1>
-        <p>Welcome to your new Gatsby application. Press start to begin :)</p>
+        <p>Welcome to your new Gatsby application. Press start to begin 1:)</p>
 
         <button id="list-urls" onClick={getUrlList}>urls</button>
 

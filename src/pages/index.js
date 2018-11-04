@@ -128,6 +128,21 @@ function getUrlList(getNumberOfPictures) {
             images=photosUrlsRandom;
         });
 }
+
+function addScore(name, score){
+    request
+        .post('https://fcc--alae.herokuapp.com/v1alpha1/graphql')
+        .send({"query":"mutation insert_player {\n  insert_players(\n    objects: [\n      {\n        \n        name: \"" + score + "\",\n        score: \"" + score + "\"\n      }\n    ]\n  ) {\n    returning {\n      id\n      name\n    }\n  }\n}","variables":null,"operationName":"insert_player"}) // sends a JSON post body
+        .set('X-API-Key', 'foobar')
+        .set('accept', 'json')
+        .end((err, res) => {
+
+            console.log(res)
+
+
+        });
+}
+
 getUrlList(5)
 
 function onChange(event) {
@@ -154,6 +169,7 @@ export default class IndexPage extends React.Component {
                 <div id="startinterface" style={{textAlign:"center"}}>
                     <h1>Hi people</h1>
                     <p>Welcome to "Drop it like is hot" new Gatsby application. Press Start to begin :)</p>
+                    <button id="add-score" onClick={addScore} className={'btn btn-info'} style={{marginRight:"10px", display: "inline-block"}}>Add a new URL</button>
 
                     <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{maxWidth: "300px", margin: "10px auto", display: "block"}}></input>
                     <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Start</button>

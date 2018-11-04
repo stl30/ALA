@@ -39,7 +39,7 @@ function getUrlList() {
                 urls += '<tr>' +
                     '       <td>'+e['id']+'</td>' +
                     '       <td>'+e['photo_url']+'</td>' +
-                    '       <td><button  class="delete-url"  data-id="'+e['id']+'">delete</button></td>' +
+                    '       <td><button  class="delete-url btn btn-danger"  data-id="'+e['id']+'">delete</button></td>' +
                     '</tr>'
             });
 
@@ -122,15 +122,20 @@ function deleteUrl(urlId) {
 
 const IndexPage = () => (
     <Layout>
-        <h1>Lista urluri</h1>
-        <p>Welcome to your new Gatsby application. Press start to begin 1:)</p>
+        <h1 className="text-center">Admin interface</h1>
+        <h3>View application URLs</h3>
 
-        <button id="list-urls" onClick={getUrlList}>urls</button>
-        <input id='url_photo_input' type="text" name='url_photo'/>
-        <button id="add-urls" onClick={addPhotoLink}>add url</button>
-
-        <table >
-            <thead>
+        <table className="table table-striped table-dark">
+            <thead className="thead-dark">
+                <tr>
+                    <th colSpan={2}>
+                        <input id='url_photo_input' type="text" name='url_photo' className={'form-control'} />
+                    </th>
+                    <th>
+                        <button id="add-urls" onClick={addPhotoLink} className={'btn btn-info'} style={{marginRight:"10px", display: "inline-block"}}>Add a new URL</button>
+                        <button id="list-urls" onClick={getUrlList} className={'btn btn-info'} style={{display: "inline-block"}}>Get URL list</button>
+                    </th>
+                </tr>
                 <tr>
                     <th>id</th>
                     <th>url</th>

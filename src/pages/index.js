@@ -19,6 +19,7 @@ var images = [];
 /*on start press will follow the next lines to load*/
 var q = 0;
 function callLoop() {
+    console.log(images.length)
     var obj = images[q]; /*get the link from obj*/
 
     if(q !== 0){
@@ -26,24 +27,21 @@ function callLoop() {
         document.getElementById("content-default").innerHTML = '<div>Please put this item in a category:</div><div id="addIMG"><img id="currentIMG" src="" width="250" /></div>';
     }
 
-    callApi(obj.photo_url, q);/*call Api with the new link*/
-    q++; /*increment counter*/
+
     if( q < images.length ){
-            setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
+        callApi(obj.photo_url, q);/*call Api with the new link*/
+        setTimeout( callLoop, 5000 );/*call function again after 10 sec*/
     }else{
         if( q === images.length){
-            console.log("images.length "+images.length);
-            console.log("q "+q);
+            console.log('add_score')
+            addScore(getCookie('username'), getCookie("score"));
+            q=0;
 
-            setTimeout( addScore(getCookie('username'), getCookie("score")), 10000 );
         }
     }
-}
-
-function addScore(name, score){
-
-    console.log(name);
-    console.log(score);
+    console.log("images.length "+images.length);
+    console.log("q "+q);
+    q++; /*increment counter*/
 }
 
 function showBtns(){
@@ -161,9 +159,10 @@ function getUrlList(getNumberOfPictures) {
 }
 
 function addScore(name, score){
+
     request
         .post('https://fcc--alae.herokuapp.com/v1alpha1/graphql')
-        .send({"query":"mutation insert_player {\n  insert_players(\n    objects: [\n      {\n        \n        name: \"" + score + "\",\n        score: \"" + score + "\"\n      }\n    ]\n  ) {\n    returning {\n      id\n      name\n    }\n  }\n}","variables":null,"operationName":"insert_player"}) // sends a JSON post body
+        .send({"query":"mutation insert_player {\n  insert_players(\n    objects: [\n      {\n        \n        name: \"" + name + "\",\n        score: \"" + score + "\"\n      }\n    ]\n  ) {\n    returning {\n      id\n      name\n    }\n  }\n}","variables":null,"operationName":"insert_player"}) // sends a JSON post body
         .set('X-API-Key', 'foobar')
         .set('accept', 'json')
         .end((err, res) => {
@@ -200,7 +199,7 @@ export default class IndexPage extends React.Component {
                 <div id="startinterface" style={{textAlign:"center"}}>
                     <h1>Hi people</h1>
                     <p>Welcome to "Drop it like is hot" new Gatsby application. Press Start to begin :)</p>
-                    <button id="add-score" onClick={addScore} className={'btn btn-info'} style={{marginRight:"10px", display: "inline-block"}}>Add a new URL</button>
+                    {/*<button id="add-score" onClick={addScore} className={'btn btn-info'} style={{marginRight:"10px", display: "inline-block"}}>Add a new URL</button>*/}
 
                     <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{maxWidth: "300px", margin: "10px auto", display: "block"}}></input>
                     <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Start</button>

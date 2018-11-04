@@ -130,6 +130,11 @@ function getUrlList(getNumberOfPictures) {
 }
 getUrlList(5)
 
+function onChange(event) {
+    // this.setState({typed: event.target.value});
+    console.log(event);
+}
+
 
 export default class IndexPage extends React.Component {
     componentDidMount() {
@@ -148,7 +153,7 @@ export default class IndexPage extends React.Component {
             <Layout>
                 <div id="startinterface" style={{textAlign:"center"}}>
                     <h1>Hi people</h1>
-                    <p>Welcome to your new Gatsby application. Press start to begin :)</p>
+                    <p>Welcome to "Drop it like is hot" new Gatsby application. Press Start to begin :)</p>
 
                     <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{maxWidth: "300px", margin: "10px auto", display: "block"}}></input>
                     <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Start</button>

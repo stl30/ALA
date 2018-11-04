@@ -37,10 +37,13 @@ function callLoop() {
             addScore(getCookie('username'), getCookie("score"));
             q=0;
 
+            var corrimg = document.getElementById('content-default');
+            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://www.freeiconspng.com/uploads/yellow-star-png-image--yellow-star-png-image-2.png" /><div>You have finished!</div>';
+
         }
     }
-    console.log("images.length "+images.length);
-    console.log("q "+q);
+    // console.log("images.length "+images.length);
+    // console.log("q "+q);
     q++; /*increment counter*/
 }
 
@@ -88,9 +91,13 @@ function checkCateg(cetegorySelected){
     cetegorySelected = eval(cetegorySelected);
 
     if(cetegorySelected.indexOf(apirsp) == -1){
+        var corrimg = document.getElementById('content-default');
+        corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://img.clipartxtras.com/00102a250a131b15f45274fff0956aba_crying-smiley-face-clip-art-sad-face-with-tears-clipart-crying-clipart-sad-face-crying_768-768.png" /><div>The answer is not correct!</div>';
         // console.log("Wrong");
         minusPoints.push(1);
     }else{
+        var corrimg = document.getElementById('content-default');
+        corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://www.freeiconspng.com/uploads/yellow-star-png-image--yellow-star-png-image-2.png" /><div>The answer is correct!!!</div>';
         // console.log("True");
         plusPoints.push(1) ;
     }
@@ -126,7 +133,7 @@ function callApi(link){
         .then(response => {
             var concepts = response['outputs'][0]['data']['concepts']; /*return api response based on a link*/
             var div = document.getElementById('response'); /*where to put the response*/
-            console.log(concepts[0]['name']);
+            // console.log(concepts[0]['name']);
             div.innerHTML += link+"<br/>"; /*the response and the link used*/
             var div2 = document.getElementById('response_val');
             div2.innerHTML = concepts[0]['name'];
@@ -153,7 +160,7 @@ function getUrlList(getNumberOfPictures) {
                 return -1;
             });
 
-            console.log(photosUrlsRandom)
+            // console.log(photosUrlsRandom)
             images=photosUrlsRandom;
         });
 }

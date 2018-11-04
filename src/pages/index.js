@@ -36,9 +36,11 @@ function callLoop() {
             console.log('add_score')
             addScore(getCookie('username'), getCookie("score"));
             q=0;
+            minusPoints = [];
+            plusPoints = [];
 
             var corrimg = document.getElementById('content-default');
-            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://www.freeiconspng.com/uploads/yellow-star-png-image--yellow-star-png-image-2.png" /><div>You have finished!</div>';
+            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://techflourish.com/images/cross-the-finish-line-clipart-6.png" /><div>You have finished!</div>';
 
         }
     }

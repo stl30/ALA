@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import request from 'superagent'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
@@ -194,10 +195,30 @@ function callApi(link){
         })
 }
 
+function getUrlList() {
+    request
+        .post('https://fcc--alae.herokuapp.com/v1alpha1/graphql')
+        .send({"query":"query{photos_urls {id photo_url}}","variables":null}) // sends a JSON post body
+        .set('X-API-Key', 'foobar')
+        .set('accept', 'json')
+        .end((err, res) => {
+            // Calling the end function will send the request
+            var photosUrlsRandom = JSON.parse(res.text).data.photos_urls.sort(function (e) {
+                if (Math.random()>.5){
+                    return 1
+                }
+                return -1;
+            });
+
+            console.log(photosUrlsRandom)
+
+        });
+}
+
 
 const IndexPage = () => (
   <Layout>
-    <h1>Hi people</h1> 
+    <h1>Hi people</h1>
     <p>Welcome to your new Gatsby application. Press start to begin :)</p>
     <div id="score"></div>
 

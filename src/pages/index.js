@@ -223,7 +223,6 @@ const IndexPage = () => (
     <div id="score"></div>
 
     <button id="startbutton" onClick={callLoop}>Start</button>
-    <button id="list-urls" onClick={getUrlList}>urls</button>
 
     <div id="appcontent"  style={{display: 'none'}}>
         <div style={{width: '48%', float: 'left'}}>
@@ -239,6 +238,7 @@ const IndexPage = () => (
             <pre id="response"></pre>
         </div>
     </div>
+      <button id="list-urls" onClick={getUrlList}>urls</button>
     
 
     <div id="response_val" style={{visibility: 'hidden'}}></div>

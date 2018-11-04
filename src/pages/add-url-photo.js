@@ -45,8 +45,8 @@ function addPhotoLink(photoUrl) {
 
 const IndexPage = () => (
     <Layout>
-        <h1>Add url</h1>
-        <p>Welcome to your new Gatsby application. Press start to begin :)</p>
+        <h1 className="text-center">Admin interface</h1>
+        <h3>Add URL for a new photo</h3>
 
         <input id='url_photo_input' type="text" name='url_photo'/>
         <button id="add-urls" onClick={addPhotoLink}>add url</button>

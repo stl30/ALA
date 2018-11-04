@@ -1,6 +1,6 @@
 /*@import "./bootstrap.min.css";*/
 html {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: Comic Sans MS, cursive, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -629,13 +629,13 @@ header{
   background: #d8aeae;
 }
 
-body {
-  margin: 0;
-  height: calc(100% - 150px);
+#startinterface {
+  width: 100%;
+  height: 460px;
   /* background: linear-gradient(90deg, #cfecd0, #ffc5ca); */
-  background: url(https://i.pinimg.com/564x/4e/ab/22/4eab2231a97a2ae2ef028081821c018a.jpg) no-repeat center; 
-  background-size: 50%;
-  
+  background: url(kids.png) no-repeat center; 
+  background-size: 40% 100%;
+  padding-top: 180px;
 }
 
 
@@ -718,6 +718,9 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+#startbutton {
+  max-width: 240px;
+}
 
 /*#startbutton {*/
   /*font-size: 18px;*/
@@ -779,4 +782,54 @@ body {
     transform: rotateX(-90deg);
     -webkit-transform: rotateX(-90deg);
     -moz-transform: rotateX(-90deg);
+}
+
+
+
+
+/* * {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #fff 0%, #eee 80%);
+} */
+
+/* @keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+
+#currentIMG {
+  border-radius: 20%;
+}
+.circle {
+  position: relative;
+  border: 2px solid #0996a3;
+  /* width: 45vmin; */
+  border-radius: 20%;
+  transition: all 0.3s ease;
+  box-shadow: inset 10.2840516701vmin -5.9375vmin 0vmin 0vmin rgba(255, 0, 0, 0.45), inset -10.2840516701vmin -5.9375vmin 0vmin 0vmin rgba(235, 255, 0, 0.54), inset 0 11.875vmin 0vmin 0vmin rgba(0, 133, 255, 0.53), inset -10.2840516701vmin 5.9375vmin 0vmin 0vmin rgba(22, 243, 3, 0.55), inset 10.2840516701vmin 5.9375vmin 0vmin 0vmin rgba(190, 11, 224, 0.55), inset 0 -11.875vmin 0vmin 0vmin rgba(253, 127, 11, 0.54);
+  animation: spin 110s linear infinite;
+}
+.circle:hover {
+  box-shadow: inset 20.5681033403vmin -11.875vmin 0vmin 0vmin rgba(255, 0, 0, 0.45), inset -20.5681033403vmin -11.875vmin 0vmin 0vmin rgba(235, 255, 0, 0.54), inset 0 23.75vmin 0vmin 0vmin rgba(0, 133, 255, 0.53), inset -20.5681033403vmin 11.875vmin 0vmin 0vmin rgba(22, 243, 3, 0.55), inset 20.5681033403vmin 11.875vmin 0vmin 0vmin rgba(190, 11, 224, 0.55), inset 0 -23.75vmin 0vmin 0vmin rgba(253, 127, 11, 0.54);
+}
+.circle:before {
+  content: "";
+  display: block;
+  /* padding-top: 100%; */
 }

@@ -26,7 +26,8 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-        <a href="/list-urls"> lista urluri</a>
+        <Link to={"/list-urls"}>lista urluri</Link>
+        {/*<a href="/list-urls"> lista urluri</a>*/}
         &nbsp;&nbsp;&nbsp;
         <a href="/add-url-photo"> add urluri</a>
     </div>

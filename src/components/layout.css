@@ -1,10 +1,12 @@
+/*@import "./bootstrap.min.css";*/
 html {
-  font-family: sans-serif;
+  font-family: Comic Sans MS, cursive, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 body {
   margin: 0;
+  background: linear-gradient(90deg, #cfecd0, #ffc5ca);
 }
 article,
 aside,
@@ -229,7 +231,7 @@ h1 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -246,7 +248,7 @@ h2 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -263,7 +265,7 @@ h3 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -280,7 +282,7 @@ h4 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -297,7 +299,7 @@ h5 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -314,7 +316,7 @@ h6 {
   margin-bottom: 1.45rem;
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -595,7 +597,7 @@ code {
   background-color: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-    "Liberation Mono", Menlo, Courier, monospace;
+  "Liberation Mono", Menlo, Courier, monospace;
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -621,4 +623,224 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+header{
+  background: #d8aeae;
+}
+
+#startinterface {
+  width: 100%;
+  height: 460px;
+  /* background: linear-gradient(90deg, #cfecd0, #ffc5ca); */
+  background: url(kids.png) no-repeat center; 
+  background-size: 40% 100%;
+  padding-top: 180px;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+.preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+.back {
+    width: 100%;
+    /* height: 700px; */
+    /* float: left; */
+    /* background-color: #fff; */
+    
+    /* overflow: hidden; */
+    /* border: 10px;
+    border-color: #ffffff;
+    border-style: solid; */
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    counter-increment: bc;
+    padding: 0px 5px 5px 5px;
+}
+
+@media screen and (max-width: 1260px) {
+    .back {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .back {
+        width: 100%;
+    }
+}
+
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+  border-radius: 6px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    /* border: #000000 solid 1px; */
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+#startbutton {
+}
+
+/*#startbutton {*/
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+  /*padding: 0;*/
+  /*background-color: #44B4D5;*/
+  /*color: #000000;*/
+  /*transition: all 0.2s ease;*/
+  /*-webkit-transition: all 0.2s ease;*/
+  /*-moz-transition: all 0.2s ease;*/
+  /*transform-origin: 50% 50% -25px;*/
+  /*-webkit-transform-origin: 50% 50% -25px;*/
+  /*-moz-transform-origin: 50% 50% -25px;*/
+/*}*/
+.b05_3d_roll div:nth-child(1) {
+    height: 51px;
+    color: #000000;
+    background-color: #44B4D5;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #000000;
+    background-color: #8EB4E6;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #000000;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+
+
+
+/* * {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #fff 0%, #eee 80%);
+} */
+
+/* @keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+
+#currentIMG {
+  border-radius: 20%;
+}
+.circle {
+  position: relative;
+  border: 2px solid #0996a3;
+  /* width: 45vmin; */
+  border-radius: 20%;
+  transition: all 0.3s ease;
+  box-shadow: inset 10.2840516701vmin -5.9375vmin 0vmin 0vmin rgba(255, 0, 0, 0.45), inset -10.2840516701vmin -5.9375vmin 0vmin 0vmin rgba(235, 255, 0, 0.54), inset 0 11.875vmin 0vmin 0vmin rgba(0, 133, 255, 0.53), inset -10.2840516701vmin 5.9375vmin 0vmin 0vmin rgba(22, 243, 3, 0.55), inset 10.2840516701vmin 5.9375vmin 0vmin 0vmin rgba(190, 11, 224, 0.55), inset 0 -11.875vmin 0vmin 0vmin rgba(253, 127, 11, 0.54);
+  animation: spin 110s linear infinite;
+}
+.circle:hover {
+  box-shadow: inset 20.5681033403vmin -11.875vmin 0vmin 0vmin rgba(255, 0, 0, 0.45), inset -20.5681033403vmin -11.875vmin 0vmin 0vmin rgba(235, 255, 0, 0.54), inset 0 23.75vmin 0vmin 0vmin rgba(0, 133, 255, 0.53), inset -20.5681033403vmin 11.875vmin 0vmin 0vmin rgba(22, 243, 3, 0.55), inset 20.5681033403vmin 11.875vmin 0vmin 0vmin rgba(190, 11, 224, 0.55), inset 0 -23.75vmin 0vmin 0vmin rgba(253, 127, 11, 0.54);
+}
+.circle:before {
+  content: "";
+  display: block;
+  /* padding-top: 100%; */
+}
+
+#startbutton {
+  background-color: #62D0FF;
+  border-color: #75D6FF;
+  width: 200px;
+}
+
+#startbutton:hover {
+  background: #5757FF;
+  border-color: #6A6AFF;
+
 }

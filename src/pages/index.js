@@ -243,56 +243,51 @@ export default class IndexPage extends React.Component {
       <Layout>
 
         <div id="startinterface" style={{ textAlign: "center" }}>
-
-
-
-          <h1>Hi people</h1>
-          <p>Welcome to your new Gatsby application.<br></br> Press start to begin :)</p>
-          <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{ maxWidth: "300px", margin: "10px auto", display: "block" }}></input>
-          <div className="back">
-            <div className="button_base b05_3d_roll">
-              <div><button id="startbutton" className="btn" onClick={callLoop}>Play</button></div>
-              <div>Start</div>
+            <h1>Hi people</h1>
+            <p>Welcome to your new Gatsby application.<br></br> Press start to begin :)</p>
+            <input className="form-control" type="text" name="name" id="username" placeholder="Username" style={{ maxWidth: "300px", margin: "10px auto", display: "block" }}></input>
+            <div className="back">
+                <div className="button_base b05_3d_roll">
+                    <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Play</button>
+                </div>
             </div>
-
-          </div>
-
-          <div id="appcontent" style={{ display: 'none' }}>
-
-            <div className='container' style={{ textAlign: "center" }}>
-              <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px' }}>
-                <div style={{ marginBottom: "20px" }}>Please put this item in a category:</div>
-                <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
-              </div>
-            </div>
-            <div className='container'>
-              <div className="row">
-                <div className="col-3">
-                  <h3 className="text-center">animals</h3>
-                  <div id="animals" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
-                </div>
-                <div className="col-3">
-                  <h3 className="text-center">nature</h3>
-                  <div id="nature" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
-                </div>
-                <div className="col-3">
-                  <h3 className="text-center">vehicles</h3>
-                  <div id="vehicles" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
-                </div>
-                <div className="col-3">
-                  <h3 className="text-center">toys</h3>
-                  <div id="toys" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
-                </div>
-              </div>
-
-            </div>
-            <div id="score" style={{ marginTop: '20px', textAlign: 'center' }}></div>
-            <pre id="response" style={{ visibility: 'hidden' }}></pre>
-            <div id="response_val" style={{ visibility: 'hidden' }}></div>
-          </div>
-
         </div>
+
+
+        <div id="appcontent" style={{ display: 'none' }}>
+              <div className='container' style={{ textAlign: "center" }}>
+                  <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px' }}>
+                      <div style={{ marginBottom: "20px" }}>Please put this item in a category:</div>
+                      <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
+                  </div>
+              </div>
+              <div className='container'>
+                  <div className="row">
+                      <div className="col-3">
+                          <h3 className="text-center">animals</h3>
+                          <div id="animals" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
+                      </div>
+                      <div className="col-3">
+                          <h3 className="text-center">nature</h3>
+                          <div id="nature" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
+                      </div>
+                      <div className="col-3">
+                          <h3 className="text-center">vehicles</h3>
+                          <div id="vehicles" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
+                      </div>
+                      <div className="col-3">
+                          <h3 className="text-center">toys</h3>
+                          <div id="toys" className='drag-wrapper' style={{ minHeight: '245px', border: '1px solid black' }}></div>
+                      </div>
+                  </div>
+
+              </div>
+              <div id="score" style={{ marginTop: '20px', textAlign: 'center' }}></div>
+              <pre id="response" style={{ visibility: 'hidden' }}></pre>
+              <div id="response_val" style={{ visibility: 'hidden' }}></div>
+          </div>
+
       </Layout>
     )
   }

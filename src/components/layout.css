@@ -719,19 +719,19 @@ body {
     -moz-box-sizing: border-box;
 }
 
-#startbutton {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 0;
-  background-color: #44B4D5;
-  color: #000000;
-  transition: all 0.2s ease;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  transform-origin: 50% 50% -25px;
-  -webkit-transform-origin: 50% 50% -25px;
-  -moz-transform-origin: 50% 50% -25px;
-}
+/*#startbutton {*/
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+  /*padding: 0;*/
+  /*background-color: #44B4D5;*/
+  /*color: #000000;*/
+  /*transition: all 0.2s ease;*/
+  /*-webkit-transition: all 0.2s ease;*/
+  /*-moz-transition: all 0.2s ease;*/
+  /*transform-origin: 50% 50% -25px;*/
+  /*-webkit-transform-origin: 50% 50% -25px;*/
+  /*-moz-transform-origin: 50% 50% -25px;*/
+/*}*/
 .b05_3d_roll div:nth-child(1) {
     height: 51px;
     color: #000000;

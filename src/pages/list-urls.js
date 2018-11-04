@@ -122,10 +122,12 @@ function deleteUrl(urlId) {
 
 const IndexPage = () => (
     <Layout>
-        <h1 className="text-center">Admin interface</h1>
-        <h3>View application URLs</h3>
+        <div className="container">
+            <h1 className="text-center">Admin interface</h1>
+            <h3>View application URLs</h3>
 
         <div className="container">
+
             <table className="table table-striped table-dark">
                 <thead className="thead-dark">
                 <tr>
@@ -151,10 +153,13 @@ const IndexPage = () => (
         </div>
 
 
+            <div id="list-urls">
 
-        <div id="list-urls">
+            </div>
 
         </div>
+
+
 
     </Layout>
 )

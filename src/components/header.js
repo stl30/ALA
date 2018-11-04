@@ -29,7 +29,7 @@ const Header = ({ siteTitle }) => (
                   &nbsp;&nbsp;&nbsp;
                   <Link className="align-items-center align-self-center"  style={{color:"white"}} to={"/list-urls"}>Admin</Link>
                   &nbsp;&nbsp;&nbsp;
-                  <Link className="align-items-center align-self-center"  style={{color:"white"}} to={"/boards"}>LeaderBoard</Link>
+                  <Link className="align-items-center align-self-center"  style={{color:"white"}} to={"/boards"}>Leaderboard</Link>
 
               </div>
           </div>

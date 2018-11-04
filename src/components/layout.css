@@ -719,7 +719,6 @@ header{
     -moz-box-sizing: border-box;
 }
 #startbutton {
-  max-width: 240px;
 }
 
 /*#startbutton {*/
@@ -832,4 +831,16 @@ body {
   content: "";
   display: block;
   /* padding-top: 100%; */
+}
+
+#startbutton {
+  background-color: #62D0FF;
+  border-color: #75D6FF;
+  width: 200px;
+}
+
+#startbutton:hover {
+  background: #5757FF;
+  border-color: #6A6AFF;
+
 }

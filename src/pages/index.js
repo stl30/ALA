@@ -11,7 +11,7 @@ import Layout from '../components/layout'
 
 var minusPoints = [];
 var plusPoints = [];
-var images = [{
+var images1 = [{
     "id" : "1",
     "name"   : "child",
     "link" : "https://ae01.alicdn.com/kf/HTB1XGhfNXXXXXXDXFXXq6xXFXXX7/Kids-Puzzle-Educational-Toys-Disassembly-Assembly-Classic-Car-Model-Building-Toy-Children-best-gifts.jpg_640x640.jpg"
@@ -111,12 +111,12 @@ var images = [{
     "name"   : "desert",
     "link" : "https://defenders.org/sites/default/files/styles/homepage-feature-2015/public/mojave-desert_mendenhall-glacier_jason-mohap.png"
 }];
+var images = [];
 
-
+// images=getUrlList()
 
 /*on start press will follow the next lines to load*/
 var i = 0;
-var howManyTimes = images.length;
 function callLoop() {
     var obj = images[i]; /*get the link from obj*/
 
@@ -125,9 +125,9 @@ function callLoop() {
         document.getElementById("content-default").innerHTML = '<div>Please put this item in a category:</div><div id="addIMG"><img id="currentIMG" src="" width="250" /></div>';
     }
 
-    callApi(obj.link);/*call Api with the new link*/
+    callApi(obj.photo_url);/*call Api with the new link*/
     i++; /*increment counter*/
-    if( i < howManyTimes ){
+    if( i < images.length ){
         setTimeout( callLoop, 10000 );/*call function again after 10 sec*/
     }
 }
@@ -222,8 +222,10 @@ function getUrlList() {
             });
 
             console.log(photosUrlsRandom)
+            images=photosUrlsRandom;
         });
 }
+getUrlList()
 
 
 export default class IndexPage extends React.Component {

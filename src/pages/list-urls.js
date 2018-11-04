@@ -122,11 +122,12 @@ function deleteUrl(urlId) {
 
 const IndexPage = () => (
     <Layout>
-        <h1 className="text-center">Admin interface</h1>
-        <h3>View application URLs</h3>
+        <div className="container">
+            <h1 className="text-center">Admin interface</h1>
+            <h3>View application URLs</h3>
 
-        <table className="table table-striped table-dark">
-            <thead className="thead-dark">
+            <table className="table table-striped table-dark">
+                <thead className="thead-dark">
                 <tr>
                     <th colSpan={2}>
                         <input id='url_photo_input' type="text" name='url_photo' className={'form-control'} />
@@ -141,16 +142,20 @@ const IndexPage = () => (
                     <th>url</th>
                     <th>delete</th>
                 </tr>
-            </thead>
+                </thead>
 
-            <tbody id="urls_table_body">
+                <tbody id="urls_table_body">
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <div id="list-urls">
+            <div id="list-urls">
+
+            </div>
 
         </div>
+
+
 
     </Layout>
 )

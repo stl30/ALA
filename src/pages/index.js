@@ -41,7 +41,7 @@ function callLoop() {
             plusPoints = [];
 
             var corrimg = document.getElementById('content-default');
-            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://techflourish.com/images/cross-the-finish-line-clipart-6.png" /><div>You have finished with '+getCookie("score")+' points</div>';
+            corrimg.innerHTML = '<img width="245" id="currentIMG" src="https://techflourish.com/images/cross-the-finish-line-clipart-6.png" /><div>Your final score is: '+getCookie("score")+'</div>';
 
         }
     }
@@ -215,7 +215,7 @@ export default class IndexPage extends React.Component {
         <div id="startinterface" style={{ textAlign: "center" }}>
 
           {/* <p>Welcome to your new Gatsby application.<br></br> Press start to begin :)</p> */}
-          <input className="form-control" type="text" name="name" id="username" placeholder="Your nickname?" style={{ maxWidth: "240px", margin: "10px auto", display: "block" }}></input>
+          <input className="form-control" type="text" name="name" id="username" placeholder="Your nickname?" style={{ maxWidth: "240px", height: "50px", margin: "10px auto", display: "block" }}></input>
           <div className="back">
             <div className="button_base b05_3d_roll">
             <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Let's drop it!</button>
@@ -229,7 +229,7 @@ export default class IndexPage extends React.Component {
 
             <div className='container' style={{ textAlign: "center" }}>
               <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px', color: "#233489" }}>
-                <div style={{ marginBottom: "20px" }}>Please put this item in a category:</div>
+                <div style={{ marginBottom: "20px" }}>Please select a category for this item</div>
                 <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
               </div>

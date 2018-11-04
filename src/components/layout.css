@@ -638,7 +638,11 @@ header{
   padding-top: 180px;
 }
 
+#startbutton:hover {
+  background: #5757FF;
+  border-color: #6A6AFF;
 
+}
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 

@@ -245,7 +245,7 @@ export default class IndexPage extends React.Component {
         <div id="startinterface" style={{ textAlign: "center" }}>
 
           {/* <p>Welcome to your new Gatsby application.<br></br> Press start to begin :)</p> */}
-          <input className="form-control" type="text" name="name" id="username" placeholder="Your nickname?" style={{ maxWidth: "240px", margin: "10px auto", display: "block" }}></input>
+          <input className="form-control" type="text" name="name" id="username" placeholder="Your nickname?" style={{ height: "50px", maxWidth: "240px", margin: "10px auto", display: "block" }}></input>
           <div className="back">
             <div className="button_base b05_3d_roll">
             <button id="startbutton" className="btn btn-primary" onClick={callLoop}>Let's drop it!</button>

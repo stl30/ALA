@@ -638,7 +638,11 @@ header{
   padding-top: 180px;
 }
 
+#startbutton:hover {
+  background: #5757FF;
+  border-color: #6A6AFF;
 
+}
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
@@ -843,4 +847,51 @@ body {
   background: #5757FF;
   border-color: #6A6AFF;
 
+}
+
+
+
+
+
+
+.dot {
+  width: 60px;
+  height: 60px;
+  background: #75802c;
+  border-radius: 50%;
+  animation: bounce 700ms infinite ease-in-out;
+}
+
+/* Dot animation */
+@keyframes bounce {
+  45% {
+    width: 60px;
+    height: 60px;
+  }
+  50% {
+    transform: translateY(45px);
+    width: 80px;
+    height: 40px;
+  }
+  65% {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.shadow {
+  background: gray;
+  width: 60px;
+  height: 10px;
+  border-radius: 50%;
+  animation: shadow-thing 700ms infinite;
+  opacity: .2;
+}
+
+/* Shadow animation */
+@keyframes shadow-thing {
+  50% {
+    width: 30px;
+    opacity: .5;
+  }
 }

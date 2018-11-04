@@ -265,7 +265,7 @@ export default class IndexPage extends React.Component {
 
           <div className='container' style={{ textAlign: "center" }}>
             <div className='drag-wrapper' id="content-default" style={{ minHeight: '260px', color: "#233489" }}>
-              <div style={{ marginBottom: "20px" }}>Please select a category for this item</div>
+              <div style={{ marginBottom: "20px" }}>Please include the image below in a category :)</div>
               <div id="addIMG" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <img style={{ maxHeight: "245px", maxWidth: "245px" }} id="currentIMG" src="" /></div>
             </div>
